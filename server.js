@@ -6,31 +6,25 @@ const PORT = 3000;
 // Set up the Express App
 const app = express();
 
+// Sets up the Express app to handle data parsing
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 const reservations = [
   {
-    name: "",
+    name: "name",
     number: 4,
-    time: "cookies",
+    email: "email@email.com",
+    id: 123,
   },
+];
+
+const waitlist = [
   {
-    name: "",
-    number: 26,
-    time: "Potato",
-  },
-  {
-    name: "",
-    number: 25,
-    time: "Steak",
-  },
-  {
-    name: "",
-    number: 38,
-    time: "cookies",
-  },
-  {
-    name: "",
-    number: 38,
-    time: "cookies",
+    name: "name",
+    number: 4,
+    email: "email@email.com",
+    id: 123,
   },
 ];
 
@@ -38,28 +32,12 @@ const reservations = [
 app.get("/", (req, res) => {
   res.send("Hello");
 });
-app.get("/api", (req, res) => {
-  res.sendFile(path.join(_dirname, "views", "Hello")); // Require this new api file from api.html
+app.get("/api/tables", (req, res) => {
+  return res.json(reservations);
 });
-app.get("/api/reservations", (req, res) => {
-  const out = new Response(students);
-  res.json(out);
-  res.json(students); // Add a new path here for our students array and adding another endpoint
-});
-app.get("/api/reservations", (req, res) => {
-  const { name } = req.query;
-  res.send(reservations); // Query parameters here to get one specific name when we type that name in the url of the server
+app.get("/api/waitlist", (req, res) => {
+  return res.json(waitlist);
 });
 // Create our listener
 app.listen(PORT, () => console.log("Listening at PORT 3000"));
 
-// Install a dev dependency - npm i --save
-
-// In package.JSON file, insert: "start": "nodemon index.js,"
-// nodemon is cool because it is watching the server
-
-// npm start
-
-// npm run start
-
-// Node mon is running node and setting a watcher on all files
