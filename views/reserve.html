@@ -64,24 +64,5 @@
 
 </body>
 
-<script type="text/javascript">
-    // Add to reservation array
-    $("#submit").on("click", function (e) {
-        e.preventDefault();
-        const reservations = {
-            name: $("#name").val().trim(),
-            number: $("#number").val().trim(),
-            email: $("#email").val().trim(),
-            id: $("#uid").val().trim()
-        };
-        console.log("clicked")
-
-        $.post("/api/tables", reservations)
-            .then(function (data) {
-                // console.log("reservations.html", data);
-                console.log("submit");
-            });
-    });
-</script>
-
+<script src="scripts/reserve.js"></script>
 </html>

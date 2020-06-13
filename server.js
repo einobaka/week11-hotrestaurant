@@ -12,6 +12,7 @@ const app = express();
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static('public'));
 
 // Add a root route
 app.get("/", (req, res) => {
@@ -31,7 +32,7 @@ app.get("/api/waitlist", (req, res) => {
 });
 
 // POST
-app.post("/", function (req, res) {
+app.post("/api/tables", function (req, res) {
   const newReservation = req.body;
   if (tablesLeft === 0) {
     waitlist.push(newReservation);
@@ -48,5 +49,7 @@ app.post("/", function (req, res) {
 
 // Create our listener
 app.listen(PORT, () => console.log("Listening at PORT 3000"));
+
+module.exports = tablesLeft;
 
 
