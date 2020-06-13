@@ -10,7 +10,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const reservations = [
+let reservations = [
   {
     name: "name",
     number: 4,
@@ -19,7 +19,7 @@ const reservations = [
   },
 ];
 
-const waitlist = [
+let waitlist = [
   {
     name: "name",
     number: 4,
