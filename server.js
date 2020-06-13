@@ -1,6 +1,5 @@
 const express = require("express");
 const path = require("path"); // Require new file
-const Response = require("./Response"); // Require the response file
 
 const PORT = 3000;
 
@@ -52,7 +51,7 @@ app.get("/api/reservations", (req, res) => {
   res.send(reservations); // Query parameters here to get one specific name when we type that name in the url of the server
 });
 // Create our listener
-app.listen(PORT, () => console.log("Server started"));
+app.listen(PORT, () => console.log("Listening at PORT 3000"));
 
 // Install a dev dependency - npm i --save
 
