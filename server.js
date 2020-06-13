@@ -32,3 +32,23 @@ app.get("/api/waitlist", (req, res) => {
 // Create our listener
 app.listen(PORT, () => console.log("Listening at PORT 3000"));
 
+// POST
+app.post("/", function (req, res) {
+  // req.body hosts is equal to the JSON post sent from the user
+  // This works because of our body parsing middleware
+  let reservations = req.body;
+  reservations.name = parseInt(reservations.name);
+
+  let waitlist = req.body;
+  waitlist.name = parseInt(waitlist.name);
+
+  console.log(reservations);
+
+  // We then add the json the user sent to the character array
+  reservations.push(reservations);
+  waitlist.push(waitlist);
+
+  // We then display the JSON to the users
+  res.json(reservations);
+  res.json(waitlist);
+});
