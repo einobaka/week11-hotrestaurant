@@ -1,4 +1,4 @@
-let reservations = [
+let tables = [
     {
       name: "name",
       number: 4,
@@ -7,4 +7,4 @@ let reservations = [
     },
   ];
 
-  module.exports = reservations;
+  module.exports = tables;
