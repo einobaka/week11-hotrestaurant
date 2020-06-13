@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path"); // Require new file
 const tables = require("./data/tables");
 const waitlist = require("./data/waitlist");
+let tablesLeft = 5;
 
 const PORT = 3000;
 
@@ -23,7 +24,7 @@ app.get("/tables", (req, res) => {
   res.sendFile(path.join(__dirname, 'views', "tables.html"));
 });
 app.get("/api/tables", (req, res) => {
-  return res.json(reservations);
+  return res.json(tables);
 });
 app.get("/api/waitlist", (req, res) => {
   return res.json(waitlist);
@@ -31,15 +32,18 @@ app.get("/api/waitlist", (req, res) => {
 
 // POST
 app.post("/", function (req, res) {
-  // if tablesLeft = 0 - waitlist
   const newReservation = req.body;
   if (tablesLeft === 0) {
     waitlist.push(newReservation);
+    res.json("Reservation added to wait list")
   } else {
     tables.push(newReservation);
+    tablesLeft -= 1;
+    res.json("Table has been reserved")
   }
-  console.log(`Tables: \n${tables}`);
-  console.log(`Wait List: \n${waitlist}`);
+  console.log(`Tables: \n${JSON.stringify(tables)}`);
+  console.log(`Tables Left: ${tablesLeft}`);
+  console.log(`Wait List: \n${JSON.stringify(waitlist)}`);
 });
 
 // Create our listener
