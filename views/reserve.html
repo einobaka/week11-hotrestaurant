@@ -41,45 +41,47 @@
         <div class="card-body">
             <form>
                 <div class="form-group">
-                    <label for="Name">Name</label>
+                    <label>Name</label>
                     <input type="text" class="form-control" id="name">
                 </div>
                 <div class="form-group">
-                    <label for="Phone Number">Phone Number</label>
+                    <label>Phone Number</label>
                     <input type="text" class="form-control" id="phone">
                 </div>
                 <div class="form-group">
-                    <label for="Email">Email address</label>
+                    <label>Email address</label>
                     <input type="email" class="form-control" id="email">
                 </div>
                 <div class="form-group">
-                    <label for="Unique ID">Unique ID</label>
+                    <label>Unique ID</label>
                     <input type="text" class="form-control" id="uid">
                 </div>
 
-                <a href=""></a><button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" id="submit">Submit</button>
             </form>
         </div>
     </div>
 
-    <script type="text/javascript">
-        // Add to reservation array
-        $("#submit").on("click", function (e) {
-            e.preventDefault();
-            const reservations = {
-                name: $("#phone").val().trim(),
-                number: $("#number").val().trim(),
-                email: $("#email").val().trim(),
-                id: $("#uid").val().trim()
-            };
-
-            $.post("/reservations", reservations)
-                .then(function (data) {
-                    console.log("reservations.html", data);
-                });
-        });
-    </script>
-
 </body>
+
+<script type="text/javascript">
+    // Add to reservation array
+    $("#submit").on("click", function (e) {
+        e.preventDefault();
+        const reservations = {
+            name: $("#name").val().trim(),
+            number: $("#number").val().trim(),
+            email: $("#email").val().trim(),
+            id: $("#uid").val().trim()
+        };
+        console.log("clicked")
+
+        $.post("/api/tables", reservations)
+            .then(function (data) {
+                // console.log("reservations.html", data);
+                console.log("submit");
+            });
+    });
+</script>
 
 </html>
