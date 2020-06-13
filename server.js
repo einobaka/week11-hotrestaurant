@@ -30,7 +30,13 @@ let waitlist = [
 
 // Add a root route
 app.get("/", (req, res) => {
-  res.send("Hello");
+  res.sendFile(path.join(__dirname, 'html', "home.html"));
+});
+app.get("/reserve", (req, res) => {
+  res.sendFile(path.join(__dirname, 'html', "reserve.html"));
+});
+app.get("/tables", (req, res) => {
+  res.sendFile(path.join(__dirname, 'html', "tables.html"));
 });
 app.get("/api/tables", (req, res) => {
   return res.json(reservations);
